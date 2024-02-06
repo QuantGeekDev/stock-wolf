@@ -23,7 +23,6 @@ class AlpacaDataProvider(DataProvider):
 
     def get_historical_market_data(self, tickers: list) -> pd.DataFrame:
         """Gets historical market data for given ticker and time period from Alpaca Markets"""
-        market_data_df = pd.DataFrame()
         start_date = self.get_start_date()
         bars_request_params = StockBarsRequest(
             symbol_or_symbols=tickers, timeframe=self.timeframe, start=start_date
@@ -62,8 +61,8 @@ class AlpacaDataProvider(DataProvider):
         """Returns the timeframe object from a string \n
         Valid inputs: 1Month, 1Day, 1Hour, 1Minute"""
         if self.DEFAULT_TIMEFRAME is None:
-            print("DEFAULT_TIMEFRAME not set!")
-
+            logging.error("DEFAULT_TIMEFRAME not set!")
+            return
         elif self.DEFAULT_TIMEFRAME == "1Month":
             return TimeFrame.Month
 
