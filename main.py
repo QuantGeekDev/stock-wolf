@@ -15,3 +15,4 @@ empty_symbols = []
 
 market_data = data_provider.get_historical_market_data(tickers)
 apple_market_data = market_data.loc["AAPL"]
+print(apple_market_data)
